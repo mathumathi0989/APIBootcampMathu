@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-06-21T17:01:17 EDT" name="Default suite" finished-at="2024-06-21T17:01:22 EDT" duration-ms="4537">
+  <suite started-at="2024-06-21T20:37:26 EDT" name="Default suite" finished-at="2024-06-21T20:37:33 EDT" duration-ms="6801">
     <groups>
     </groups>
-    <test started-at="2024-06-21T17:01:17 EDT" name="Default test" finished-at="2024-06-21T17:01:22 EDT" duration-ms="4537">
-      <class name="testCasesUsingPOJO.RequestUsingPOJONOT">
-        <test-method is-config="true" signature="setup()[pri:0, instance:testCasesUsingPOJO.RequestUsingPOJONOT@4f209819]" started-at="2024-06-21T17:01:17 EDT" name="setup" finished-at="2024-06-21T17:01:17 EDT" duration-ms="318" status="PASS">
+    <test started-at="2024-06-21T20:37:26 EDT" name="Default test" finished-at="2024-06-21T20:37:33 EDT" duration-ms="6801">
+      <class name="dataDriven.RequestUsingDataProviderNOT">
+        <test-method is-config="true" signature="setup()[pri:0, instance:dataDriven.RequestUsingDataProviderNOT@c33b74f]" started-at="2024-06-21T20:37:26 EDT" name="setup" finished-at="2024-06-21T20:37:26 EDT" duration-ms="328" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="testGetUser()[pri:1, instance:testCasesUsingPOJO.RequestUsingPOJONOT@4f209819]" started-at="2024-06-21T17:01:17 EDT" name="testGetUser" finished-at="2024-06-21T17:01:19 EDT" duration-ms="2017" status="PASS">
+        <test-method signature="runTestSequence(testCasesUsingPOJO.user)[pri:1, instance:dataDriven.RequestUsingDataProviderNOT@c33b74f]" started-at="2024-06-21T20:37:26 EDT" name="runTestSequence" data-provider="userDataProvider" finished-at="2024-06-21T20:37:30 EDT" duration-ms="4065" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[testCasesUsingPOJO.user@64ba3208]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testGetUser -->
-        <test-method signature="testCreateUser()[pri:2, instance:testCasesUsingPOJO.RequestUsingPOJONOT@4f209819]" started-at="2024-06-21T17:01:19 EDT" name="testCreateUser" finished-at="2024-06-21T17:01:20 EDT" duration-ms="662" status="PASS">
+        </test-method> <!-- runTestSequence -->
+        <test-method signature="runTestSequence(testCasesUsingPOJO.user)[pri:1, instance:dataDriven.RequestUsingDataProviderNOT@c33b74f]" started-at="2024-06-21T20:37:30 EDT" name="runTestSequence" data-provider="userDataProvider" finished-at="2024-06-21T20:37:33 EDT" duration-ms="2387" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[testCasesUsingPOJO.user@21edd891]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCreateUser -->
-        <test-method signature="testGetUserID()[pri:3, instance:testCasesUsingPOJO.RequestUsingPOJONOT@4f209819]" started-at="2024-06-21T17:01:20 EDT" name="testGetUserID" finished-at="2024-06-21T17:01:21 EDT" duration-ms="665" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testGetUserID -->
-        <test-method signature="testUpdateUser()[pri:4, instance:testCasesUsingPOJO.RequestUsingPOJONOT@4f209819]" started-at="2024-06-21T17:01:21 EDT" name="testUpdateUser" finished-at="2024-06-21T17:01:21 EDT" duration-ms="441" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testUpdateUser -->
-        <test-method signature="testDeleteUser()[pri:5, instance:testCasesUsingPOJO.RequestUsingPOJONOT@4f209819]" started-at="2024-06-21T17:01:21 EDT" name="testDeleteUser" finished-at="2024-06-21T17:01:21 EDT" duration-ms="406" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testDeleteUser -->
-      </class> <!-- testCasesUsingPOJO.RequestUsingPOJONOT -->
+        </test-method> <!-- runTestSequence -->
+      </class> <!-- dataDriven.RequestUsingDataProviderNOT -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

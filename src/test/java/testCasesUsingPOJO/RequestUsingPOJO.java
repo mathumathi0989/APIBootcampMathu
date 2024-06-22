@@ -1,4 +1,4 @@
-package dataDriven;
+package testCasesUsingPOJO;
 
 
 import static io.restassured.RestAssured.given;
@@ -15,7 +15,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-public class RequestUsingDataProviderNOT {
+public class RequestUsingPOJO {
 
 	protected String baseURI;
 	protected String username;
@@ -44,23 +44,23 @@ public class RequestUsingDataProviderNOT {
 				"-----------------------------------------------------------------------------------------------------------");
 	}
 
-	@Test(priority = 2)
+@Test(priority = 2)
 	public void testCreateUser() {
-		JSONObject req = new JSONObject();
-		req.put("user_first_name", "vvhu");
-		req.put("user_last_name", "ril");
-		req.put("user_contact_number", "2003000005");
-		req.put("user_email_id", "mazil@gmail.com");
-		JSONObject userAddress = new JSONObject();
-		 userAddress.put("plotNumber", "pl-0233");
-	        userAddress.put("Street", "avenue");
-	        userAddress.put("state", "NJ");
-	        userAddress.put("Country", "usa");
-	        userAddress.put("zipCode", "1234");
-		req.put("userAddress", userAddress);
+		 UserAddress userAddress = new UserAddress();
+		 userAddress.setPlotNumber("pl-0233");
+		 userAddress.setStreet("avenue");
+		 userAddress.setState("NJ");
+		 userAddress.setCountry("usa");
+		 userAddress.setZipCode("1234");
+		 user user= new user();
+		 user.setUser_first_name("vvhu");
+		 user.setUser_last_name("ril");
+		 user.setUser_contact_number("2003000005");
+		 user.setUser_email_id("mazil@gmail.com");
+		   user.setUserAddress(userAddress);
 
 
-		Response response = given().auth().basic(username, password).contentType(ContentType.JSON).body(req)
+		Response response = given().auth().basic(username, password).contentType(ContentType.JSON).body(user)
 				.when().post("createusers").then().log().all().statusCode(201).extract().response();
 
 		userId = response.jsonPath().getInt("user_id");
@@ -84,22 +84,22 @@ public class RequestUsingDataProviderNOT {
 
 	}
 
-	@Test(priority = 4)
+@Test(priority = 4)
 	public void testUpdateUser() {
-		 JSONObject userAddress = new JSONObject();
-	        userAddress.put("plotNumber", "ab-0233");
-	        userAddress.put("street", "avenuee");
-	        userAddress.put("state", "TNZSd");
-	        userAddress.put("country", "USA");
-	        userAddress.put("zipCode", "1234");
+		 UserAddress userAddress = new UserAddress();
+		 userAddress.setPlotNumber("ab-0233");
+		 userAddress.setStreet("avenuee");
+		 userAddress.setState("TNZSd");
+		 userAddress.setCountry("USA");
+		 userAddress.setZipCode("1234");
+		 user user= new user();
+		 user.setUser_first_name("dummy");
+		 user.setUser_last_name("uedfr");
+		 user.setUser_contact_number("3051044545");
+		 user.setUser_email_id("dummy21@gml.com");
+		   user.setUserAddress(userAddress);
 
-	        JSONObject jsonObject = new JSONObject();
-	        jsonObject.put("user_first_name", "dummy");
-	        jsonObject.put("user_last_name", "uedfr");
-	        jsonObject.put("user_contact_number", "3051044545");
-	        jsonObject.put("user_email_id", "dummy21@gml.com");
-	        jsonObject.put("userAddress", userAddress);
-		Response response = given().auth().basic(username, password).contentType(ContentType.JSON).body(jsonObject.toString())
+		Response response = given().auth().basic(username, password).contentType(ContentType.JSON).body(user)
 				.when().put("updateuser/" + userId).then().log().all()
 				.body("user_last_name", equalTo("uedfr"))
 				.statusCode(200).extract().response();
