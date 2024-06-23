@@ -3,12 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="dataDriven.RequestUsingDataProviderNOT">
+      <class name="dataDriven.RequestUsingExcelNOT">
         <methods>
-          <include name="runTestSequence" invocation-numbers="0 1"/>
+          <include name="testCreateUsers"/>
+          <include name="testGetUserID"/>
+          <include name="testDeleteUsers"/>
           <include name="setup"/>
+          <include name="testUpdateUsers"/>
         </methods>
-      </class> <!-- dataDriven.RequestUsingDataProviderNOT -->
+      </class> <!-- dataDriven.RequestUsingExcelNOT -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
