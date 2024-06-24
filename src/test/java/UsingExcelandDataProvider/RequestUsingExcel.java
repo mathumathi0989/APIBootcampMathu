@@ -37,13 +37,13 @@ public class RequestUsingExcel {
          RestAssured.baseURI = baseURI;
          username = "Numpy@gmail.com";
          password = "userapi123";
-         excelUtils = new ExcelUtils("C:/Users/mathu/Downloads/APIDummyData.xlsx"); // Path to your Excel file
-         usersData = excelUtils.getUserData("Sheet1"); // Read all user data from the sheet
+         excelUtils = new ExcelUtils("src/test/java/Utilities/APIDummyData.xlsx"); 
+         usersData = excelUtils.getUserData("Sheet1");
      }
 
 @Test
      public void testCRUDUsers() {
-    	 ObjectMapper objectMapper = new ObjectMapper(); // Create ObjectMapper instance
+    	 ObjectMapper objectMapper = new ObjectMapper(); 
     	 for (Map<String, Object> userData : usersData) {
     		 //Get all users
     		 Response response = given().auth().basic(username, password).when().get("users").then().statusCode(200).extract().response();

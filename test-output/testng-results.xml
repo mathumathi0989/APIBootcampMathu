@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-06-24T16:14:31 EDT" name="Default suite" finished-at="2024-06-24T16:14:38 EDT" duration-ms="7533">
+  <suite started-at="2024-06-24T16:23:01 EDT" name="Default suite" finished-at="2024-06-24T16:23:10 EDT" duration-ms="8380">
     <groups>
     </groups>
-    <test started-at="2024-06-24T16:14:31 EDT" name="Default test" finished-at="2024-06-24T16:14:38 EDT" duration-ms="7533">
-      <class name="dataDriven.RequestUsingExcelNOT">
-        <test-method is-config="true" signature="setup()[pri:0, instance:dataDriven.RequestUsingExcelNOT@65fb9ffc]" started-at="2024-06-24T16:14:31 EDT" name="setup" finished-at="2024-06-24T16:14:31 EDT" duration-ms="718" status="PASS">
+    <test started-at="2024-06-24T16:23:01 EDT" name="Default test" finished-at="2024-06-24T16:23:10 EDT" duration-ms="8380">
+      <class name="UsingExcelandDataProvider.RequestUsingExcel">
+        <test-method is-config="true" signature="setup()[pri:0, instance:UsingExcelandDataProvider.RequestUsingExcel@65fb9ffc]" started-at="2024-06-24T16:23:01 EDT" name="setup" finished-at="2024-06-24T16:23:02 EDT" duration-ms="1040" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="testCRUDUsers()[pri:0, instance:dataDriven.RequestUsingExcelNOT@65fb9ffc]" started-at="2024-06-24T16:14:31 EDT" name="testCRUDUsers" finished-at="2024-06-24T16:14:38 EDT" duration-ms="6793" status="PASS">
+        <test-method signature="testCRUDUsers()[pri:0, instance:UsingExcelandDataProvider.RequestUsingExcel@65fb9ffc]" started-at="2024-06-24T16:23:02 EDT" name="testCRUDUsers" finished-at="2024-06-24T16:23:10 EDT" duration-ms="7315" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCRUDUsers -->
-      </class> <!-- dataDriven.RequestUsingExcelNOT -->
+      </class> <!-- UsingExcelandDataProvider.RequestUsingExcel -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
