@@ -5,8 +5,6 @@
     <classes>
       <class name="dataDriven.RequestUsingExcelNOT">
         <methods>
-          <include name="testCreateUsers"/>
-          <include name="testGetUserID"/>
           <include name="testDeleteUsers"/>
           <include name="setup"/>
           <include name="testUpdateUsers"/>
