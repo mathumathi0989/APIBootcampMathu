@@ -1,4 +1,4 @@
-package dataDriven;
+package UsingExcelandDataProvider;
 
 import java.io.FileInputStream;
 import java.io.IOException;

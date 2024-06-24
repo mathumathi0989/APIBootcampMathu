@@ -1,4 +1,4 @@
-package dataDriven;
+package UsingExcelandDataProvider;
 
 
 import static io.restassured.RestAssured.given;
