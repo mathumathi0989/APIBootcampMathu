@@ -5,7 +5,7 @@ public class UserAddress {
 	private String plotNumber;
 	private String Street;
 	private String state;
-	private String Country;
+	private String country;
 	private String zipCode;
 	
 	public String getPlotNumber() {
@@ -27,10 +27,10 @@ public class UserAddress {
 		this.state = state;
 	}
 	public String getCountry() {
-		return Country;
+		return country;
 	}
 	public void setCountry(String country) {
-		this.Country = country;
+		this.country = country;
 	}
 	public String getZipCode() {
 		return zipCode;

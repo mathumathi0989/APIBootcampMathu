@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="PlainJSONSuite">
-  <test thread-count="5" name="PlainJSONTest">
-    <classes>
-      <class name="plainJSONString.RequestUsingPlainJSONTest">
-                </class>
-    </classes>
-  </test> <!-- Test -->
+<suite name="AllureReport">
+    <listeners>
+        <!-- Ensure the correct listener class-name for Allure -->
+        <listener class-name="io.qameta.allure.testng.AllureTestNg" />
+    </listeners>
+
+    <test thread-count="5" name="PlainJSONTest">
+        <classes>
+            <!-- Specify the fully qualified class name of your test class -->
+            <class name="plainJSONString.RequestUsingPlainJSONTest" />
+        </classes>
+    </test> <!-- Test -->
 </suite> <!-- Suite -->
+

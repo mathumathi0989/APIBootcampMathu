@@ -4,12 +4,25 @@ package testCasesUsingMap;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Set;
+
 import static org.hamcrest.Matchers.*;
 
 import org.json.simple.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.networknt.schema.JsonSchema;
+import com.networknt.schema.JsonSchemaFactory;
+import com.networknt.schema.SpecVersion;
+import com.networknt.schema.ValidationMessage;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -47,15 +60,15 @@ public class RequestUsingMapTest {
 	@Test(priority = 2)
 	public void testCreateUser() {
 		JSONObject req = new JSONObject();
-		req.put("user_first_name", "vvhu");
-		req.put("user_last_name", "ril");
-		req.put("user_contact_number", "2003000005");
-		req.put("user_email_id", "mazil@gmail.com");
+		req.put("user_first_name", "krish");
+		req.put("user_last_name", "bala");
+		req.put("user_contact_number", "2003000665");
+		req.put("user_email_id", "balakrish@gmail.com");
 		JSONObject userAddress = new JSONObject();
 		 userAddress.put("plotNumber", "pl-0233");
-	        userAddress.put("Street", "avenue");
+	        userAddress.put("street", "avenue");
 	        userAddress.put("state", "NJ");
-	        userAddress.put("Country", "usa");
+	        userAddress.put("country", "usa");
 	        userAddress.put("zipCode", "1234");
 		req.put("userAddress", userAddress);
 
@@ -65,6 +78,14 @@ public class RequestUsingMapTest {
 
 		userId = response.jsonPath().getInt("user_id");
 		System.out.println("Created user ID: " + userId);
+		// Validate the response JSON schema
+        validateJsonSchema(response.asString(), "src/test/java/Utilities/user-schema.json");
+        //Validate after creating user
+    	AfterPostuserCount = given().auth().basic(username, password).when().get("users").then().extract().response().jsonPath().getList("users").size();
+		System.out.println("Total Number of users after post: " + AfterPostuserCount);
+		int count = AfterPostuserCount - userCount;
+		
+		Assert.assertEquals(count, 1);
 		System.out.println(
 				"-----------------------------------------------------------------------------------------------------------");
 
@@ -72,13 +93,9 @@ public class RequestUsingMapTest {
 
 @Test(priority = 3)
 	public void testGetUserID() {
-		Response response = given().auth().basic(username, password).when().get("users").then().statusCode(200)
+		Response response = given().auth().basic(username, password).when().get("user/" + userId).then().statusCode(200)
 				.extract().response();
-		AfterPostuserCount = response.jsonPath().getList("users").size();
-		System.out.println("Total Number of users: " + AfterPostuserCount);
-		int count = AfterPostuserCount - userCount;
-		//System.out.println("One user is added : " + count);
-		Assert.assertEquals(count, 1);
+		
 		System.out.println(
 				"-----------------------------------------------------------------------------------------------------------");
 
@@ -94,19 +111,19 @@ public class RequestUsingMapTest {
 	        userAddress.put("zipCode", "1234");
 
 	        JSONObject jsonObject = new JSONObject();
-	        jsonObject.put("user_first_name", "dummy");
-	        jsonObject.put("user_last_name", "uedfr");
-	        jsonObject.put("user_contact_number", "3051044545");
-	        jsonObject.put("user_email_id", "dummy21@gml.com");
+	        jsonObject.put("user_first_name", "krishna");
+	        jsonObject.put("user_last_name", "balak");
+	        jsonObject.put("user_contact_number", "3051040545");
+	        jsonObject.put("user_email_id", "krishnaba@gml.com");
 	        jsonObject.put("userAddress", userAddress);
 		Response response = given().auth().basic(username, password).contentType(ContentType.JSON).body(jsonObject.toString())
 				.when().put("updateuser/" + userId).then().log().all()
-				.body("user_last_name", equalTo("uedfr"))
+				.body("user_last_name", equalTo("balak"))
 				.statusCode(200).extract().response();
 
 		String body = response.getBody().asString();
 		System.out.println("Response Body is " + body);
-		assertThat(body, containsString("\"user_first_name\":\"dummy\""));
+		assertThat(body, containsString("\"user_first_name\":\"krishna\""));
 
 
 		System.out.println(
@@ -125,4 +142,37 @@ public class RequestUsingMapTest {
 
 	}
 
+	private void validateJsonSchema(String jsonResponse, String schemaPath) {
+        try {
+        	 Path path = Paths.get(schemaPath);
+             System.out.println("Schema file absolute path: " + path.toAbsolutePath());
+             
+             // Check if the file exists
+             if (!Files.exists(path)) {
+                 throw new RuntimeException("Schema file does not exist at path: " + path.toAbsolutePath());
+             }
+             
+            JsonSchemaFactory schemaFactory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V7);
+            JsonSchema schema = schemaFactory.getSchema(Files.newInputStream(Paths.get(schemaPath)));
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(jsonResponse);
+
+            Set<ValidationMessage> validationMessages = schema.validate(jsonNode);
+
+            if (!validationMessages.isEmpty()) {
+                for (ValidationMessage message : validationMessages) {
+                    System.out.println("Validation Message: " + message.getMessage());
+                }
+                Assert.fail("JSON validation against the schema failed.");
+            } else {
+                System.out.println("JSON is valid against the schema.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail("JSON validation against the schema failed: " + e.getMessage());
+        }
+        
+	}
+	
 }
